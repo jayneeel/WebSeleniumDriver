@@ -44,7 +44,8 @@ try:
     action.key_down(Keys.CONTROL).perform()
     time.sleep(2)
 
-    from_so_btn = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '//button[text()="FROM SO"]')))
+    from_so_btn = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH,
+                                                                              '/html/body/app/main/pages/div/div[2]/div/sales/addsales-invoice/div[1]/div[3]/voucher-master-action/button[2]')))
 
     from_so_btn.click()
     time.sleep(2)
@@ -54,35 +55,3 @@ except Exception as e:
     print(f'Sales Invoice link is not clickable or not found {e}')
 
 # -----------------------------------------------------------------------------------------------------
-
-
-# CLAUDE AI WORK DOWN
-action = ActionChains(driver)
-
-action.key_down(Keys.CONTROL).perform()
-
-driver.implicitly_wait(1000)
-
-# FROM SO ===>    "/html/body/app/main/pages/div/div[2]/div/sales/addsales-invoice/div[1]/div[3]/voucher-master-action/button[2]"
-
-# actions = ActionChains(driver)
-#
-# # Hold down the Ctrl key
-# actions.key_down(Keys.CONTROL)
-#
-# from_so_btn = WebDriverWait(driver, 30).until(EC.element_to_be_clickable(
-#     (By.XPATH, '/html/body/app/main/pages/div/div[2]/div/sales/addsales-invoice/div[1]/div[3]/voucher-master-action/button[2]')))
-#
-# # Click on the element while holding down the Ctrl key
-# actions.click(from_so_btn)
-# print("FROM SO btn cliked")
-#
-# # Release the Ctrl key
-# actions.key_up(Keys.CONTROL)
-#
-#
-#
-# first_bill = WebDriverWait(driver, 30).until(EC.element_to_be_clickable(
-#     (By.XPATH, '/html/body/app/main/pages/div/div[2]/div/sales/addsales-invoice/div[1]/div[3]/generic-popup-grid[1]/div/div/div/div/div[1]/div[3]/table/tbody/tr[1]/td[1]')))
-# first_bill.click()
-# first_bill.click()
