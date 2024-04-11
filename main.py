@@ -1,12 +1,12 @@
+import time
+
 from selenium import webdriver
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import time
-from pynput import keyboard
-from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 service = Service(executable_path=ChromeDriverManager().install())
@@ -29,9 +29,9 @@ login_button = WebDriverWait(driver, 10).until(
 username_input.send_keys('admin')
 password_input.send_keys('654321')
 login_button.click()
-print("*** CLICKED *******")
+print("*** Auth Successful *******")
 
-time.sleep(5)
+time.sleep(2)
 
 try:
     sales_invoice_link = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
@@ -45,7 +45,10 @@ try:
     time.sleep(2)
 
     from_so_btn = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH,
-                                                                              '/html/body/app/main/pages/div/div[2]/div/sales/addsales-invoice/div[1]/div[3]/voucher-master-action/button[2]')))
+                                                                              '/html/body/app/main/pages/div/div['
+                                                                              '2]/div/sales/addsales-invoice/div['
+                                                                              '1]/div['
+                                                                              '3]/voucher-master-action/button[2]')))
 
     from_so_btn.click()
     time.sleep(2)
