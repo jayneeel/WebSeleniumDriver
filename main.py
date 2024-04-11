@@ -74,7 +74,7 @@ try:
                                                                                   '1]/div/div/div/div/div[1]/div['
                                                                                   '3]/table/tbody/tr[1]')))
         action.double_click(top_invoice).perform()
-        print("DOUBLE CLICK")
+        print("Bill Saved")
         time.sleep(1)
 
         saveButton = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH,
@@ -86,6 +86,8 @@ try:
         time.sleep(1)
         action.key_down(Keys.ESCAPE).perform()
         open_from_so()
+    print("Completed!")
+
 
 
 except Exception as e:
