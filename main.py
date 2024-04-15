@@ -8,6 +8,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import NoSuchElementException
+
 
 service = Service(executable_path=ChromeDriverManager().install())
 options = webdriver.ChromeOptions()
@@ -73,19 +75,38 @@ try:
                                                                                   '1]/div[3]/generic-popup-grid['
                                                                                   '1]/div/div/div/div/div[1]/div['
                                                                                   '3]/table/tbody/tr[1]')))
+        name = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,
+
+                                                                                  '/html/body/app/main/pages/div/div['
+                                                                                  '2]/div/sales/addsales-invoice/div['
+                                                                                  '1]/div[3]/generic-popup-grid['
+                                                                                  '1]/div/div/div/div/div[1]/div['
+                                                                                  '3]/table/tbody/tr[1]/td[3]')))
+        print(name.text)
+
         action.double_click(top_invoice).perform()
         print("Bill Saved")
         time.sleep(1)
 
-        saveButton = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH,
-                                                                                 '/html/body/app/main/pages/div/div['
-                                                                                 '2]/div/sales/addsales-invoice/div['
-                                                                                 '1]/div['
-                                                                                 '3]/voucher-master-action/button[6]')))
-        saveButton.click()
-        time.sleep(1)
-        action.key_down(Keys.ESCAPE).perform()
-        open_from_so()
+        try:
+            saveButton = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH,
+                                                                                     '/html/body/app/main/pages/div/div['
+                                                                                     '2]/div/sales/addsales-invoice/div['
+                                                                                     '1]/div['
+                                                                                     '3]/voucher-master-action/button[6]')))
+            saveButton.click()
+            time.sleep(1)
+            action.key_down(Keys.ESCAPE).perform()
+            open_from_so()
+        except NoSuchElementException:
+            print("Popup warning appeared, handling...")
+            ok_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-success')))
+            ok_button.click()
+            print("Clicked OK to dismiss popup warning")
+
+            # Continue processing
+            open_from_so()
+
     print("Completed!")
 
 
