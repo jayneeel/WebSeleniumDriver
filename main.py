@@ -65,7 +65,7 @@ try:
     tr_elements = invoice_table.find_elements(By.TAG_NAME, "tr")
 
     # Iterate through each td element and double-click on it
-    for i in range(len(tr_elements)):
+    for i in range(len(tr_elements)*8):
         action = ActionChains(driver)
         top_invoice = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,
                                                                                   '/html/body/app/main/pages/div/div['
@@ -75,7 +75,7 @@ try:
                                                                                   '3]/table/tbody/tr[1]')))
         action.double_click(top_invoice).perform()
         print("Bill Saved")
-        time.sleep(1)
+        time.sleep(2.5)
 
         saveButton = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH,
                                                                                  '/html/body/app/main/pages/div/div['
