@@ -74,7 +74,7 @@ try:
                                                                                   '2]/div/sales/addsales-invoice/div['
                                                                                   '1]/div[3]/generic-popup-grid['
                                                                                   '1]/div/div/div/div/div[1]/div['
-                                                                                  '3]/table/tbody/tr[1]')))
+                                                                                  '3]/table/tbody/tr[3]')))
         name = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,
 
                                                                                   '/html/body/app/main/pages/div/div['
